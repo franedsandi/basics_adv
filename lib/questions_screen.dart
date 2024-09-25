@@ -18,21 +18,26 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     /* alternative to center the content , it can be used like flexbox (space betwen and all that) */
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestions.text,
-            style: const TextStyle(
-              fontSize: 24,
-              color: Colors.white,
+      child: Container(
+        margin: const EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestions.text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
             ),
-          ),
-          const SizedBox(height: 30),
-          ...currentQuestions.answers.map((answer) {
-            return AnswerButton(answerText: answer, onTap: () {});
-          }),
-        ],
+            const SizedBox(height: 30),
+            ...currentQuestions.answers.map((answer) {
+              return AnswerButton(answerText: answer, onTap: () {});
+            }),
+          ],
+        ),
       ),
     );
   }
