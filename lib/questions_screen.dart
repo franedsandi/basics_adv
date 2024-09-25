@@ -17,7 +17,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionsIndex = 0;
 
   void answerQuestion(String selectedAnswers) {
-    widget.onSelectAnswer('...');
+    widget.onSelectAnswer(selectedAnswers);
     /* currentQuestionsIndex = currentQuestionsIndex + 1; */
     /* currentQuestionsIndex +=1; */ /* shorcut for the previus one */
     setState(() {
