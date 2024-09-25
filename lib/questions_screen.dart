@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './answer_button.dart';
+import './data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -12,26 +13,28 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(context) {
+    final currentQuestions = questions[0];
+
     /* alternative to center the content , it can be used like flexbox (space betwen and all that) */
     return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'The Questions!!!',
-            style: TextStyle(
+          Text(
+            currentQuestions.text,
+            style: const TextStyle(
               fontSize: 24,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 30),
-          AnswerButton(answerText: 'answer1', onTap: () {}),
-          AnswerButton(answerText: 'answer2', onTap: () {}),
-          AnswerButton(answerText: 'answer3', onTap: () {}),
-          AnswerButton(answerText: 'answer4', onTap: () {}),
+          ...currentQuestions.answers.map((answer) {
+            return AnswerButton(answerText: answer, onTap: () {});
+          }),
         ],
       ),
     );
   }
 }
+/* named cunjuntion safe us the need to remember the order of each element in the recalled element */
