@@ -11,9 +11,19 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  var currentQuestionsIndex = 0;
+
+  void answerQuestion() {
+    /* currentQuestionsIndex = currentQuestionsIndex + 1; */
+    /* currentQuestionsIndex +=1; */ /* shorcut for the previus one */
+    setState(() {
+      currentQuestionsIndex++; /*  currentQuestionsIndex--; to decrese*/
+    });
+  }
+
   @override
   Widget build(context) {
-    final currentQuestions = questions[0];
+    final currentQuestions = questions[currentQuestionsIndex];
 
     /* alternative to center the content , it can be used like flexbox (space betwen and all that) */
     return SizedBox(
@@ -28,14 +38,18 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               currentQuestions.text,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 40,
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 30),
-            ...currentQuestions.answers.map((answer) {
-              return AnswerButton(answerText: answer, onTap: () {});
+            ...currentQuestions.getShuffleAnswers().map((answer) {
+              return AnswerButton(
+                answerText: answer,
+                onTap: answerQuestion,
+              );
             }),
+            /* chaining events */
           ],
         ),
       ),
