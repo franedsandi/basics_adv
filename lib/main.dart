@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './start_screen.dart';
 
 void main() {
   runApp(
@@ -12,30 +13,7 @@ void main() {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset('assets/images/quiz-logo.png', width: 400),
-                const Text(
-                  'Learn Fluetter the fun way!',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.all(10),
-                    foregroundColor: Colors.white,
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  child: const Text("star quiz"),
-                )
-              ],
-            ),
-          ),
+          child: const StartScreen(),
         ),
       ),
     ),
