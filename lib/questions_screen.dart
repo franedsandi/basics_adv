@@ -4,7 +4,9 @@ import './answer_button.dart';
 import './data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({super.key, required this.onSelectAnswer});
+
+  final void Function(String answer) onSelectAnswer;
   @override
   State<QuestionsScreen> createState() {
     return _QuestionsScreenState();
@@ -14,7 +16,8 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionsIndex = 0;
 
-  void answerQuestion() {
+  void answerQuestion(String selectedAnswers) {
+    widget.onSelectAnswer('...');
     /* currentQuestionsIndex = currentQuestionsIndex + 1; */
     /* currentQuestionsIndex +=1; */ /* shorcut for the previus one */
     setState(() {
@@ -49,12 +52,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               ), */
             ),
             const SizedBox(height: 30),
-            ...currentQuestions.getShuffleAnswers().map((answer) {
-              return AnswerButton(
-                answerText: answer,
-                onTap: answerQuestion,
-              );
-            }),
+            ...currentQuestions.getShuffleAnswers().map(
+              (answer) {
+                return AnswerButton(
+                  answerText: answer,
+                  onTap: () {
+                    answerQuestion(answer);
+                  } /* this anonimous function is created on tap en will be excecuted only after created on tap event, then we send it to onSelectAnswer as chooseanswer  */,
+                );
+              },
+            ),
             /* chaining events */
           ],
         ),
