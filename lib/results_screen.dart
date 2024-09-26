@@ -12,7 +12,9 @@ class ResultsScreen extends StatelessWidget {
 
   final List<String> chosenAnswers;
 
-  List<Map<String, Object>> getSumaryData() {
+  /* changing the function with the keyword get, mas it easier to find later in the code avoinding redundancy making some kind of property mixed with a method*/
+
+  List<Map<String, Object>> /* getSumaryData --method*/ get summaryData {
     final List<Map<String, Object>> summary = [];
 
     for (var i = 0; i < chosenAnswers.length; i++) {
@@ -28,12 +30,20 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSumaryData();
+    /* final summaryData --property = getSumaryData(); */
 
     final totalQuestions = questions.length;
-    final correctAnswers = summaryData.where((data) {
+    final correctAnswers = /* summaryData.where((data) {
       return data['correct_answer'] == data['choosen_answer'];
-    }).length;
+    }).length; */
+
+        /* arrow function */
+
+        summaryData
+            .where(
+              (data) => data['correct_answer'] == data['choosen_answer'],
+            )
+            .length;
 
     return SizedBox(
       width: double.infinity,

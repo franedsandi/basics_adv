@@ -90,3 +90,4 @@ class _QuizState extends State<Quiz> {
     );
   }
 }
+/* _sets a function or a property into a private thing (property or method) that will only be used in the file they are written in */
