@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './start_screen.dart';
 import './questions_screen.dart';
 import './data/questions.dart';
+import './results_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -55,22 +56,29 @@ class _QuizState extends State<Quiz> {
       );
     }
 
+    if (activeScreen == 'result-screen') {
+      screenWidget = ResultsScreen(
+        chosenAnswers: selectedAnswers,
+      );
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.deepPurple,
-                  Colors.deepOrange,
-                  Colors.black,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.deepPurple,
+                Colors.deepOrange,
+                Colors.black,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
-            /* ternary operatioon */
-            child: screenWidget),
+          ),
+          /* ternary operatioon */
+          child: screenWidget,
+        ),
       ),
     );
   }
